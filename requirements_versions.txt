@@ -1,22 +1,9 @@
-# Core constraints to prevent compatibility issues
-numpy<2.0.0,>=1.26.2
-Pillow<10.0.0,>=9.5.0
+# EXACT VERSIONS FROM WORKING STAGING ENVIRONMENT
+# These versions are proven to work without NumPy 2.x compatibility issues
 
-# Prevent JAX/MediaPipe conflicts (these cause NumPy 2.x issues)
-jax<0.5.0
-jaxlib<0.5.0
-mediapipe<0.10.20
-ml_dtypes<0.5.0
-
-# CRITICAL: Prevent ControlNet extension from breaking dependencies
-albumentations<1.4.3
-albucore<0.0.20
-opencv-python==4.8.1.78
-opencv-contrib-python==4.8.1.78
-opencv-python-headless==4.8.1.78
-
-# Your existing requirements (with some version constraints added)
+# Core packages - EXACT versions from staging
 GitPython==3.1.32
+Pillow==11.1.0
 accelerate==0.21.0
 blendmodes==2022
 clean-fid==0.1.35
@@ -24,11 +11,12 @@ einops==0.4.1
 facexlib==0.3.0
 fastapi==0.94.0
 gradio==3.41.2
-httpcore==0.15
+httpcore==0.15.0
 inflection==0.5.1
 jsonmerge==1.8.0
 kornia==0.6.7
 lark==1.1.2
+numpy==1.26.4
 omegaconf==2.2.3
 open-clip-torch==2.20.0
 piexif==1.1.3
@@ -36,32 +24,49 @@ psutil==5.9.5
 pytorch_lightning==1.9.4
 resize-right==0.0.2
 safetensors==0.4.2
-scikit-image==0.21.0
+scikit-image==0.25.0
 spandrel==0.1.6
 tomesd==0.1.3
+torch==2.1.2
 torchdiffeq==0.2.3
 torchsde==0.2.6
 transformers==4.30.2
 httpx==0.24.1
 
-# Pin PyTorch to prevent version drift (use with CUDA 12.1)
-torch==2.1.2
+# CRITICAL: These exact versions prevent NumPy 2.x upgrade
+albumentations==1.4.3
+albucore==0.0.23
+opencv-python-headless==4.11.0.86
+protobuf==4.25.5
+
+# Additional packages from staging (exact versions)
 torchvision==0.16.2
+scikit-learn==1.6.1
+scipy==1.15.1
+matplotlib==3.10.0
+pandas==2.2.3
+requests==2.31.0
+urllib3==1.26.18
+pydantic==1.10.15
 
-# Additional constraints for common problematic packages
-protobuf==3.20.0
-scipy<1.14.0
-matplotlib<4.0.0
-pandas<3.0.0
-requests<3.0.0
-urllib3<3.0.0
+# JAX versions that work with NumPy 1.26.4
+jax==0.5.0
+jaxlib==0.5.0
+ml_dtypes==0.5.1
 
-# Prevent other packages that might pull incompatible versions
-ultralytics<8.3.0  # Newer versions might cause issues
-onnx<1.17.0
-onnxruntime<1.19.0
+# MediaPipe version that works
+mediapipe==0.10.20
 
-# Pin some development/build tools to prevent issues
-setuptools<70.0.0
-wheel<0.44.0
-pip<25.0.0
+# Additional dependencies
+insightface==0.7.3
+redis==5.2.1
+redis-collections==0.13.0
+celery==5.4.0
+pymongo==4.10.1
+python-multipart==0.0.20
+boto3==1.36.5
+botocore==1.36.5
+
+# Build tools (exact staging versions)
+setuptools==68.2.2
+wheel==0.41.2 
