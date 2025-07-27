@@ -1,12 +1,19 @@
 # Core constraints to prevent compatibility issues
 numpy<2.0.0,>=1.26.2
-Pillow<11.0.0,>=9.5.0
+Pillow<10.0.0,>=9.5.0
 
 # Prevent JAX/MediaPipe conflicts (these cause NumPy 2.x issues)
 jax<0.5.0
 jaxlib<0.5.0
 mediapipe<0.10.20
 ml_dtypes<0.5.0
+
+# CRITICAL: Prevent ControlNet extension from breaking dependencies
+albumentations<1.4.3
+albucore<0.0.20
+opencv-python==4.8.1.78
+opencv-contrib-python==4.8.1.78
+opencv-python-headless==4.8.1.78
 
 # Your existing requirements (with some version constraints added)
 GitPython==3.1.32
@@ -36,15 +43,13 @@ torchdiffeq==0.2.3
 torchsde==0.2.6
 transformers==4.30.2
 httpx==0.24.1
-opencv-python==4.8.1.78
-opencv-contrib-python==4.8.1.78
 
 # Pin PyTorch to prevent version drift (use with CUDA 12.1)
 torch==2.1.2
 torchvision==0.16.2
 
 # Additional constraints for common problematic packages
-protobuf<5.0.0,>=3.20.0
+protobuf==3.20.0
 scipy<1.14.0
 matplotlib<4.0.0
 pandas<3.0.0
